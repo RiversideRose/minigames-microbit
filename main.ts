@@ -1175,16 +1175,18 @@ input.onPinPressed(TouchPin.P1, function () {
 })
 input.onGesture(Gesture.Shake, function () {
     basic.clearScreen()
-    _8ballrng = randint(1, 3)
-    if (_8ballrng == 1) {
-        basic.showIcon(IconNames.Yes)
-        basic.showString("Yes!")
-    } else if (_8ballrng == 2) {
-        basic.showIcon(IconNames.No)
-        basic.showString("No.")
-    } else {
-        basic.showIcon(IconNames.Meh)
-        basic.showString("Maybe.")
+    if (input.buttonIsPressed(Button.B) == true) {
+        _8ballrng = randint(1, 3)
+        if (_8ballrng == 1) {
+            basic.showIcon(IconNames.Yes)
+            basic.showString("Yes!")
+        } else if (_8ballrng == 2) {
+            basic.showIcon(IconNames.No)
+            basic.showString("No.")
+        } else {
+            basic.showIcon(IconNames.Meh)
+            basic.showString("Maybe.")
+        }
     }
 })
 input.onGesture(Gesture.TiltRight, function () {

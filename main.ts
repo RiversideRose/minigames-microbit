@@ -28,6 +28,7 @@ input.onButtonPressed(Button.A, function () {
     rock = 0
     paper = 0
     scissors = 0
+    tilt = 0
     for (let index = 0; index < 2; index++) {
         rng1 = randint(0, 2)
         if (rng1 == 0) {
@@ -489,7 +490,6 @@ input.onButtonPressed(Button.A, function () {
         basic.clearScreen()
     }
     if (paper == 1 && scissors == 1) {
-        radio.sendValue("swin", 1)
         radio.sendString("swin")
         led.plotBrightness(0, 0, 100)
         led.plotBrightness(0, 1, 100)
@@ -515,7 +515,6 @@ input.onButtonPressed(Button.A, function () {
     }
     if (paper == 1 && paper == 1) {
         radio.sendString("tie")
-        radio.sendValue("tie", 1)
         led.plotBrightness(0, 0, 100)
         led.plotBrightness(0, 1, 100)
         led.plotBrightness(1, 1, 100)
@@ -590,7 +589,6 @@ input.onButtonPressed(Button.A, function () {
     if (scissors == 1 && scissors == 1) {
         radio.sendString("tie")
         led.plotBrightness(0, 0, 100)
-        radio.sendValue("tie", 1)
         led.plotBrightness(0, 1, 100)
         led.plotBrightness(1, 1, 100)
         led.plotBrightness(2, 1, 100)
@@ -615,6 +613,76 @@ input.onButtonPressed(Button.A, function () {
     basic.clearScreen()
     radio.sendString("Game Over!")
     basic.showString("Game Over!")
+})
+input.onGesture(Gesture.LogoUp, function () {
+    if (left == 1) {
+        basic.showLeds(`
+            . . . . .
+            . # # # .
+            . # # # .
+            . # # # .
+            . . . . .
+            `)
+        basic.showLeds(`
+            # # # . .
+            # # # . .
+            # # # . .
+            . . . . .
+            . . . . .
+            `)
+    } else if (right == 1) {
+        basic.showLeds(`
+            . . . . .
+            . # # # .
+            . # # # .
+            . # # # .
+            . . . . .
+            `)
+        basic.showLeds(`
+            . . # # #
+            . . # # #
+            . . # # #
+            . . . . .
+            . . . . .
+            `)
+    } else {
+        if (tilt == 2) {
+            basic.showLeds(`
+                . . . . .
+                . # # # .
+                . # # # .
+                . # # # .
+                . . . . .
+                `)
+            basic.showLeds(`
+                . # # # .
+                . # # # .
+                . # # # .
+                . . . . .
+                . . . . .
+                `)
+        }
+    }
+})
+input.onGesture(Gesture.TiltLeft, function () {
+    right = 0
+    left = 1
+    if (left == 1) {
+        basic.showLeds(`
+            . . . . .
+            . # # # .
+            . # # # .
+            . # # # .
+            . . . . .
+            `)
+        basic.showLeds(`
+            . . . . .
+            # # # . .
+            # # # . .
+            # # # . .
+            . . . . .
+            `)
+    }
 })
 input.onButtonPressed(Button.AB, function () {
     basic.showString("Created by Riversde, https://github.com/riversiderose/rockpaperscissors-microbit")
@@ -1095,7 +1163,83 @@ radio.onReceivedString(function (receivedString) {
         basic.showString("Game Over!")
     }
 })
+input.onButtonPressed(Button.B, function () {
+    tilt = 2
+})
+input.onGesture(Gesture.TiltRight, function () {
+    right = 1
+    left = 0
+    if (right == 1) {
+        basic.showLeds(`
+            . . . . .
+            . # # # .
+            . # # # .
+            . # # # .
+            . . . . .
+            `)
+        basic.showLeds(`
+            . . . . .
+            . . # # #
+            . . # # #
+            . . # # #
+            . . . . .
+            `)
+    }
+})
+input.onGesture(Gesture.LogoDown, function () {
+    if (left == 1) {
+        basic.showLeds(`
+            . . . . .
+            . # # # .
+            . # # # .
+            . # # # .
+            . . . . .
+            `)
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            # # # . .
+            # # # . .
+            # # # . .
+            `)
+    } else if (right == 1) {
+        basic.showLeds(`
+            . . . . .
+            . # # # .
+            . # # # .
+            . # # # .
+            . . . . .
+            `)
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            . . # # #
+            . . # # #
+            . . # # #
+            `)
+    } else {
+        if (tilt == 2) {
+            basic.showLeds(`
+                . . . . .
+                . # # # .
+                . # # # .
+                . # # # .
+                . . . . .
+                `)
+            basic.showLeds(`
+                . . . . .
+                . . . . .
+                . # # # .
+                . # # # .
+                . # # # .
+                `)
+        }
+    }
+})
+let right = 0
+let left = 0
 let rng1 = 0
+let tilt = 0
 let scissors = 0
 let paper = 0
 let rock = 0

@@ -1170,6 +1170,9 @@ radio.onReceivedString(function (receivedString) {
 input.onButtonPressed(Button.B, function () {
     tilt = 2
 })
+input.onPinPressed(TouchPin.P1, function () {
+    basic.showNumber(randint(1, 12))
+})
 input.onGesture(Gesture.Shake, function () {
     if (input.isGesture(Gesture.LogoUp)) {
         basic.clearScreen()

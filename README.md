@@ -2,9 +2,9 @@
 > Open this page at [https://riversiderose.github.io/rockpaperscissors-microbit/](https://riversiderose.github.io/rockpaperscissors-microbit/)
 ## A small collection of mini-games for a BBC Microbit.
 The line up of games are
-* **- Magic 8Ball** > (Shake + Logo UP)                                                                                                                                      * **- Tilt a Ball Around** > (Press B and Tilt)
-* **- Rock Paper Scissors** > (Press A, It also includes radio functionality)
-* **- Coin Flip** > (Press Pin 0)
+* **- Magic 8Ball**  *(Shake + Logo UP)                                                                                                                                      * **- Tilt a Ball Around**  *(Press B and Tilt)
+* **- Rock Paper Scissors** *(Press A, It also includes radio functionality)
+* **- Coin Flip** *(Press Pin 0)
 
 
 ## Use as Extension

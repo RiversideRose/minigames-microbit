@@ -1175,6 +1175,7 @@ input.onPinPressed(TouchPin.P1, function () {
 })
 input.onGesture(Gesture.Shake, function () {
     basic.clearScreen()
+    tilt = 0
     if (input.buttonIsPressed(Button.B) == true) {
         _8ballrng = randint(1, 3)
         if (_8ballrng == 1) {

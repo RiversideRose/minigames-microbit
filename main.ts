@@ -1,8 +1,10 @@
 input.onButtonPressed(Button.A, function () {
+    tiltegg = 0
     rock = 0
     paper = 0
     scissors = 0
     for (let index = 0; index < 2; index++) {
+        tiltegg = 0
         amogla = randint(0, 2)
         if (amogla == 0) {
             radio.sendString("Paper")
@@ -597,6 +599,78 @@ input.onButtonPressed(Button.A, function () {
     radio.sendString("Game Over!")
     basic.showString("Game Over!")
 })
+input.onGesture(Gesture.LogoUp, function () {
+    if (right == 1) {
+        basic.showLeds(`
+            . . . . .
+            . # # # .
+            . # # # .
+            . # # # .
+            . . . . .
+            `)
+        basic.showLeds(`
+            # # # . .
+            # # # . .
+            # # # . .
+            . . . . .
+            . . . . .
+            `)
+    } else if (left == 1) {
+        basic.showLeds(`
+            . . . . .
+            . # # # .
+            . # # # .
+            . # # # .
+            . . . . .
+            `)
+        basic.showLeds(`
+            . . # # #
+            . . # # #
+            . . # # #
+            . . . . .
+            . . . . .
+            `)
+    } else {
+        basic.showLeds(`
+            . . . . .
+            . # # # .
+            . # # # .
+            . # # # .
+            . . . . .
+            `)
+        basic.showLeds(`
+            . # # # .
+            . # # # .
+            . # # # .
+            . . . . .
+            . . . . .
+            `)
+    }
+})
+input.onGesture(Gesture.TiltLeft, function () {
+    if (tiltegg == 1) {
+        right = 0
+        left = 1
+        basic.showLeds(`
+            . . . . .
+            . # # # .
+            . # # # .
+            . # # # .
+            . . . . .
+            `)
+        basic.showLeds(`
+            . . . . .
+            # # # . .
+            # # # . .
+            # # # . .
+            . . . . .
+            `)
+    }
+})
+input.onButtonPressed(Button.AB, function () {
+    basic.showString("Created by Riverside.")
+    basic.showString("github.com/riversiderose")
+})
 radio.onReceivedString(function (receivedString) {
     let pwin = 0
     if (receivedString == "Paper") {
@@ -1080,8 +1154,34 @@ radio.onReceivedString(function (receivedString) {
         basic.showString("Game Over!")
     }
 })
+input.onButtonPressed(Button.B, function () {
+    tiltegg = 1
+})
+input.onGesture(Gesture.TiltRight, function () {
+    if (tiltegg == 1) {
+        right = 1
+        left = 0
+        basic.showLeds(`
+            . . . . .
+            . # # # .
+            . # # # .
+            . # # # .
+            . . . . .
+            `)
+        basic.showLeds(`
+            . . . . .
+            . . # # #
+            . . # # #
+            . . # # #
+            . . . . .
+            `)
+    }
+})
+let left = 0
+let right = 0
 let amogla = 0
 let scissors = 0
 let paper = 0
 let rock = 0
+let tiltegg = 0
 radio.setGroup(1)

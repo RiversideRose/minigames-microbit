@@ -1,10 +1,36 @@
+input.onPinPressed(TouchPin.P0, function () {
+    rng2 = randint(1, 2)
+    basic.showIcon(IconNames.Diamond)
+    basic.showIcon(IconNames.SmallDiamond)
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . . # . .
+        . . . . .
+        . . . . .
+        `)
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        `)
+    if (rng2 == 1) {
+        basic.showIcon(IconNames.Skull)
+    } else {
+        if (rng2 == 2) {
+            basic.showIcon(IconNames.Sword)
+        }
+    }
+})
 input.onButtonPressed(Button.A, function () {
     rock = 0
     paper = 0
     scissors = 0
     for (let index = 0; index < 2; index++) {
-        amogla = randint(0, 2)
-        if (amogla == 0) {
+        rng1 = randint(0, 2)
+        if (rng1 == 0) {
             radio.sendString("Paper")
             radio.sendValue("Paper", 1)
             basic.showLeds(`
@@ -22,15 +48,8 @@ input.onButtonPressed(Button.A, function () {
                 . . . . .
                 `)
             basic.showLeds(`
-                # # # . .
+                # # . . .
                 . . # # #
-                . . # # #
-                . . . . .
-                . . . . .
-                `)
-            basic.showLeds(`
-                # # # . .
-                # # # # #
                 . . # # #
                 . . . . .
                 . . . . .
@@ -84,7 +103,7 @@ input.onButtonPressed(Button.A, function () {
                 . . . . .
                 . . . . .
                 `)
-        } else if (amogla == 1) {
+        } else if (rng1 == 1) {
             radio.sendString("Rock")
             radio.sendValue("Rock", 1)
             rock = 1
@@ -597,6 +616,9 @@ input.onButtonPressed(Button.A, function () {
     radio.sendString("Game Over!")
     basic.showString("Game Over!")
 })
+input.onButtonPressed(Button.AB, function () {
+    basic.showString("Created by Riversde, https://github.com/riversiderose/rockpaperscissors-microbit")
+})
 radio.onReceivedString(function (receivedString) {
     let pwin = 0
     if (receivedString == "Paper") {
@@ -615,15 +637,8 @@ radio.onReceivedString(function (receivedString) {
             . . . . .
             `)
         basic.showLeds(`
-            # # # . .
+            # # . . .
             . . # # #
-            . . # # #
-            . . . . .
-            . . . . .
-            `)
-        basic.showLeds(`
-            # # # . .
-            # # # # #
             . . # # #
             . . . . .
             . . . . .
@@ -1080,8 +1095,9 @@ radio.onReceivedString(function (receivedString) {
         basic.showString("Game Over!")
     }
 })
-let amogla = 0
+let rng1 = 0
 let scissors = 0
 let paper = 0
 let rock = 0
+let rng2 = 0
 radio.setGroup(1)

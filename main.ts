@@ -615,38 +615,8 @@ input.onButtonPressed(Button.A, function () {
     basic.showString("Game Over!")
 })
 input.onGesture(Gesture.LogoUp, function () {
-    if (left == 1) {
-        basic.showLeds(`
-            . . . . .
-            . # # # .
-            . # # # .
-            . # # # .
-            . . . . .
-            `)
-        basic.showLeds(`
-            # # # . .
-            # # # . .
-            # # # . .
-            . . . . .
-            . . . . .
-            `)
-    } else if (right == 1) {
-        basic.showLeds(`
-            . . . . .
-            . # # # .
-            . # # # .
-            . # # # .
-            . . . . .
-            `)
-        basic.showLeds(`
-            . . # # #
-            . . # # #
-            . . # # #
-            . . . . .
-            . . . . .
-            `)
-    } else {
-        if (tilt == 2) {
+    if (tilt == 2) {
+        if (left == 1) {
             basic.showLeds(`
                 . . . . .
                 . # # # .
@@ -655,33 +625,67 @@ input.onGesture(Gesture.LogoUp, function () {
                 . . . . .
                 `)
             basic.showLeds(`
-                . # # # .
-                . # # # .
-                . # # # .
+                # # # . .
+                # # # . .
+                # # # . .
                 . . . . .
                 . . . . .
                 `)
+        } else if (right == 1) {
+            basic.showLeds(`
+                . . . . .
+                . # # # .
+                . # # # .
+                . # # # .
+                . . . . .
+                `)
+            basic.showLeds(`
+                . . # # #
+                . . # # #
+                . . # # #
+                . . . . .
+                . . . . .
+                `)
+        } else {
+            if (tilt == 2) {
+                basic.showLeds(`
+                    . . . . .
+                    . # # # .
+                    . # # # .
+                    . # # # .
+                    . . . . .
+                    `)
+                basic.showLeds(`
+                    . # # # .
+                    . # # # .
+                    . # # # .
+                    . . . . .
+                    . . . . .
+                    `)
+            }
         }
     }
 })
 input.onGesture(Gesture.TiltLeft, function () {
     right = 0
     left = 1
-    if (left == 1) {
-        basic.showLeds(`
-            . . . . .
-            . # # # .
-            . # # # .
-            . # # # .
-            . . . . .
-            `)
-        basic.showLeds(`
-            . . . . .
-            # # # . .
-            # # # . .
-            # # # . .
-            . . . . .
-            `)
+    if (tilt == 2) {
+        if (left == 1) {
+            basic.showLeds(`
+                . . . . .
+                . # # # .
+                . # # # .
+                . # # # .
+                . . . . .
+                `)
+            basic.showLeds(`
+                . . . . .
+                # # # . .
+                # # # . .
+                # # # . .
+                . . . . .
+                `)
+        }
     }
 })
 input.onButtonPressed(Button.AB, function () {
@@ -1166,59 +1170,27 @@ radio.onReceivedString(function (receivedString) {
 input.onButtonPressed(Button.B, function () {
     tilt = 2
 })
+input.onGesture(Gesture.Shake, function () {
+    if (input.isGesture(Gesture.LogoUp)) {
+        basic.clearScreen()
+        _8ballrng = randint(1, 3)
+        if (_8ballrng == 1) {
+            basic.showIcon(IconNames.Yes)
+            basic.showString("Yes!")
+        } else if (_8ballrng == 2) {
+            basic.showIcon(IconNames.No)
+            basic.showString("No.")
+        } else {
+            basic.showIcon(IconNames.Meh)
+            basic.showString("Maybe.")
+        }
+    }
+})
 input.onGesture(Gesture.TiltRight, function () {
     right = 1
     left = 0
-    if (right == 1) {
-        basic.showLeds(`
-            . . . . .
-            . # # # .
-            . # # # .
-            . # # # .
-            . . . . .
-            `)
-        basic.showLeds(`
-            . . . . .
-            . . # # #
-            . . # # #
-            . . # # #
-            . . . . .
-            `)
-    }
-})
-input.onGesture(Gesture.LogoDown, function () {
-    if (left == 1) {
-        basic.showLeds(`
-            . . . . .
-            . # # # .
-            . # # # .
-            . # # # .
-            . . . . .
-            `)
-        basic.showLeds(`
-            . . . . .
-            . . . . .
-            # # # . .
-            # # # . .
-            # # # . .
-            `)
-    } else if (right == 1) {
-        basic.showLeds(`
-            . . . . .
-            . # # # .
-            . # # # .
-            . # # # .
-            . . . . .
-            `)
-        basic.showLeds(`
-            . . . . .
-            . . . . .
-            . . # # #
-            . . # # #
-            . . # # #
-            `)
-    } else {
-        if (tilt == 2) {
+    if (tilt == 2) {
+        if (right == 1) {
             basic.showLeds(`
                 . . . . .
                 . # # # .
@@ -1228,14 +1200,67 @@ input.onGesture(Gesture.LogoDown, function () {
                 `)
             basic.showLeds(`
                 . . . . .
+                . . # # #
+                . . # # #
+                . . # # #
                 . . . . .
-                . # # # .
-                . # # # .
-                . # # # .
                 `)
         }
     }
 })
+input.onGesture(Gesture.LogoDown, function () {
+    if (tilt == 2) {
+        if (left == 1) {
+            basic.showLeds(`
+                . . . . .
+                . # # # .
+                . # # # .
+                . # # # .
+                . . . . .
+                `)
+            basic.showLeds(`
+                . . . . .
+                . . . . .
+                # # # . .
+                # # # . .
+                # # # . .
+                `)
+        } else if (right == 1) {
+            basic.showLeds(`
+                . . . . .
+                . # # # .
+                . # # # .
+                . # # # .
+                . . . . .
+                `)
+            basic.showLeds(`
+                . . . . .
+                . . . . .
+                . . # # #
+                . . # # #
+                . . # # #
+                `)
+        } else {
+            if (tilt == 2) {
+                basic.showLeds(`
+                    . . . . .
+                    . # # # .
+                    . # # # .
+                    . # # # .
+                    . . . . .
+                    `)
+                basic.showLeds(`
+                    . . . . .
+                    . . . . .
+                    . # # # .
+                    . # # # .
+                    . # # # .
+                    `)
+            }
+        }
+    }
+})
+let _8ballrng = 0
 let right = 0
 let left = 0
 let rng1 = 0

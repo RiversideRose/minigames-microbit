@@ -1,5 +1,5 @@
 
-> Open this page at [https://riversiderose.github.io/rockpaperscissors-microbit/](https://riversiderose.github.io/rockpaperscissors-microbit/)
+> Open this page at [https://riversiderose.github.io/minigames-microbit/](https://riversiderose.github.io/minigames-microbit/)
 ## A small collection of mini-games for a BBC Microbit.
 The line up of games are
 * **Magic 8Ball** (Shake + B)                                                                                                                                    

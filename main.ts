@@ -29,10 +29,13 @@ input.onButtonPressed(Button.A, function () {
     paper = 0
     scissors = 0
     tilt = 0
+    basic.pause(100)
+    radio.sendNumber(2)
     for (let index = 0; index < 2; index++) {
         rng1 = randint(0, 2)
         if (rng1 == 0) {
             radio.sendString("Paper")
+            basic.pause(100)
             radio.sendValue("Paper", 1)
             basic.showLeds(`
                 . . # # #
@@ -106,6 +109,7 @@ input.onButtonPressed(Button.A, function () {
                 `)
         } else if (rng1 == 1) {
             radio.sendString("Rock")
+            basic.pause(100)
             radio.sendValue("Rock", 1)
             rock = 1
             basic.showLeds(`
@@ -257,6 +261,7 @@ input.onButtonPressed(Button.A, function () {
                 `)
         } else {
             radio.sendString("Scissors")
+            basic.pause(100)
             scissors = 1
             basic.showLeds(`
                 # # . . #
@@ -693,6 +698,9 @@ input.onButtonPressed(Button.AB, function () {
 })
 radio.onReceivedString(function (receivedString) {
     let pwin = 0
+    if (receivedString == "\"Radio Init.") {
+        basic.showString("Ready")
+    }
     if (receivedString == "Paper") {
         basic.showLeds(`
             . . # # #
@@ -1274,3 +1282,5 @@ let paper = 0
 let rock = 0
 let rng2 = 0
 radio.setGroup(1)
+basic.pause(2000)
+radio.sendString("\"Radio Init.")
